@@ -49,6 +49,8 @@ class TexaBotClient:
 
         self.robot_angle_read: float = 0.0
         self.robot_dist_read: float = 0.0
+
+        self.is_pwm_mode: bool = False
         
 
 
@@ -198,12 +200,15 @@ class TexaBotClient:
         self.write_data3(self.WRITE_RGB, float(r_pwm), float(g_pwm), float(b_pwm))
 
     def writeMotorPwm(self, l_pwm: int, r_pwm: int):
+        self.is_pwm_mode = True
         self.write_data2(self.WRITE_MOTOR_PWM, l_pwm, r_pwm)
 
     def writeMotorVel(self, wl: float, wr: float):
+        self.is_pwm_mode = False
         self.write_data2(self.WRITE_MOTOR_VEL, wl, wr)
     
     def writeRobotVel(self, v: float, w: float):
+        self.is_pwm_mode = False
         self.write_data2(self.WRITE_CMD_VEL, v, w)
 
     def setWheelOdomParams(self, R_mm: int, L_mm: int):
@@ -278,3 +283,9 @@ class TexaBotClient:
     def readLineSensor2(self) -> int:
         with self._lock:
             return self.line_sensor2_read
+        
+    def stop(self):
+        if self.is_pwm_mode:
+            self.writeMotorPwm(0, 0)
+        else:
+            self.writeMotorVel(0.0, 0.0)
