@@ -66,12 +66,12 @@ class MoboBotClient:
         for _ in range(10):
             success = self.clearControllerData()
             if success:
-                print("TexaBot Connected Successfully")
+                print("MoboBot Connected Successfully")
                 return
             sleep(0.1)
 
         self.disconnect()
-        raise RuntimeError("Could not connect to TexaBot, Try Again")
+        raise RuntimeError("Could not connect to MoboBot, Try Again")
 
 
     def disconnect(self):
