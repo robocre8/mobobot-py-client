@@ -5,7 +5,7 @@ from math import pi
 import threading
 
 
-class TexaBotClient:
+class MoboBotClient:
 
     def __init__(self):
         self.START_BYTE = 0xAA

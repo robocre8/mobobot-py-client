@@ -1,7 +1,7 @@
 import cv2
 import time
 
-STREAM_URL = "http://espcam.local:81/stream"
+STREAM_URL = "http://mobobot-cam.local:81/stream"
 
 cap = cv2.VideoCapture(STREAM_URL)
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
@@ -21,7 +21,7 @@ while True:
     cv2.putText(frame, f"FPS: {fps:.1f}", (10,30),
                 cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
 
-    cv2.imshow("ESP32-CAM", frame)
+    cv2.imshow("MOBOBOT-CAM", frame)
 
     if cv2.waitKey(1) == 27:
         break
