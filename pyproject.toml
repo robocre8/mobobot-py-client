@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mobobot-client"
+version = "0.0.0"
+description = "MoboBot Python Client Live Coding Library"
+authors = [
+  { name="Samuel Obiagba", email="samuel.c.agba@gmail.com" },
+]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]

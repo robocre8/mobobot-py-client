@@ -8,6 +8,11 @@ cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
 prev = time.time()
 
+# Check if the camera opened successfully
+if not cap.isOpened():
+    print("Error: Could not open MOBOBOT-CAM.")
+    exit()
+
 while True:
     ret, frame = cap.read()
 
@@ -23,8 +28,10 @@ while True:
 
     cv2.imshow("MOBOBOT-CAM", frame)
 
-    if cv2.waitKey(1) == 27:
+    # 4. Stop the stream when 'q' is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+# 5. When everything is done, release the capture and close windows
 cap.release()
 cv2.destroyAllWindows()
