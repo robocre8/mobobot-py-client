@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mobobot-client"
-version = "0.0.0"
+version = "0.0.1"
 description = "MoboBot Python Client Live Coding Library"
 authors = [
   { name="Samuel Obiagba", email="samuel.c.agba@gmail.com" },
