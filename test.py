@@ -8,7 +8,7 @@ robot.start_heartbeat()
 time.sleep(2.0)
 
 
-while True:
+for _ in range(5):
   robot.buzzerOn()
 
   time.sleep(2.0)

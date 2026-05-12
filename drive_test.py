@@ -9,16 +9,27 @@ robot.start_heartbeat()
 v = 0.1
 w = 0.5
 
+time.sleep(1.0)
 robot.writeRobotVel(0.0, 0.0)
+time.sleep(1.0)
+robot.writeServo1Angle(0)
 
 
-while True:
+for _ in range(5):
   # w*=-1.0
-  time.sleep(2.0)
+  time.sleep(1.0)
+  robot.writeServo1Angle(-30)
+  time.sleep(1.0)
   robot.writeRobotVel(v, 0.0)
-  time.sleep(5.0)
+  time.sleep(6.0)
   robot.writeRobotVel(0.0, 0.0)
-  time.sleep(2.0)
+  time.sleep(1.0)
+  robot.writeServo1Angle(0)
+  time.sleep(1.0)
+  robot.writeServo1Angle(-30)
+  time.sleep(1.0)
   robot.writeRobotVel(0.0, w)
-  time.sleep(5.0)
+  time.sleep(6.0)
   robot.writeRobotVel(0.0, 0.0)
+  time.sleep(1.0)
+  robot.writeServo1Angle(0)
