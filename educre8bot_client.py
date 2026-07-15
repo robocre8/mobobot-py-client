@@ -193,6 +193,9 @@ class EduCre8BotClient:
     
     def constrain(self, data: int, min_val: int, max_val: int):
         return max(min_val, min(data, max_val))
+    
+    def map(self, x: int, in_min: int, in_max: int, out_min: int, out_max: int):
+        return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
 
     # ------------------ SEND FUNCTIONS ------------------
 
@@ -349,8 +352,7 @@ class EduCre8BotClient:
         self.percent_gripper_open = percent
 
     def gripperActionOpen(self):
-        open_dist_mm = (self.percent_gripper_open * 55)/100
-        open_dist_mm = self.constrain(open_dist_mm, 15, 55)
+        open_dist_mm = self.map(self.percent_gripper_open, 0, 100, 15, 55)
         self.writeGripperDist(open_dist_mm)
 
     def gripperActionClose(self):
