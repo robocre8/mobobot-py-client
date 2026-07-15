@@ -64,6 +64,9 @@ class EduCre8BotClient:
         self.percent_turn_speed: int = 10
         self.drive_vel: float = 0.15
         self.turn_vel: float = 0.5
+
+        self.sonar_obstacle_range: int = 500 # mm
+        self.tof_obstacle_range: int = 500 # mm
         
 
 
@@ -424,3 +427,17 @@ class EduCre8BotClient:
             sleep(0.05)
 
         self.stop()
+
+    def setSonarObstacleRange(self, val: int):
+        self.sonar_obstacle_range = val
+
+    def setTOFObstacleRange(self, val: int):
+        self.sonar_obstacle_range = val
+
+    def isSonarObstacleDetected(self):
+        reading = self.readSonar()
+        return reading<=self.sonar_obstacle_range
+    
+    def isTOFObstacleDetected(self):
+        reading = self.readTOF()
+        return reading<=self.tof_obstacle_range
