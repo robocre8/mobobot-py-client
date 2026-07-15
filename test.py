@@ -1,9 +1,9 @@
-from mobobot_client import MoboBotClient
+from educre8bot_client import EduCre8BotClient
 import time
 
-robot = MoboBotClient()
+robot = EduCre8BotClient()
 
-robot.connect("mobobot.local", 8888, 0.018)
+robot.connect("educre8bot.local", 8888, 0.018)
 robot.start_heartbeat()
 time.sleep(2.0)
 

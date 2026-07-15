@@ -3,7 +3,7 @@ import time
 
 robot = EduCre8BotClient()
 
-robot.connect("educe8bot.local", 8888, 0.018)
+robot.connect("educre8bot.local", 8888, 0.018)
 robot.start_heartbeat()
 time.sleep(2.0)
 
