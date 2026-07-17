@@ -7,24 +7,27 @@ try:
   robot.connect("educre8bot.local", 8888, 0.018)
   robot.start_heartbeat()
   time.sleep(2.0)
-  # robot.setWheelRadiusParam(0.034)
-  # robot.setWheelDistanceParam(0.170)
 
   print("[SUCCESS]: PROGRAM STARTED RUNNING")
 
   #--- GENERATED BLOCK CODE -----
-  robot.setGripPercent(45)
-  for _ in range(4):
-    robot.gripperActionOpen()
-    time.sleep(2)
-    robot.gripperActionGrip()
-    time.sleep(1)
-    robot.driveFor(robot.FORWARD, 400)
-    time.sleep(1)
-    robot.turnFor(robot.LEFT, 90)
-    time.sleep(1)
-  robot.gripperActionOpen()
-  robot.stop()
+  for _ in range(2):
+    time.sleep(3)
+    robot.writeServoAngle(45)
+    robot.rgbOn(255, 0, 0)
+    robot.buzzerOn()
+    time.sleep(3)
+    robot.writeServoAngle(7)
+    robot.rgbOn(0, 0, 0)
+    robot.buzzerOff()
+    time.sleep(3)
+    robot.writeServoAngle(-45)
+    robot.rgbOn(0, 0, 255)
+    robot.buzzerOn()
+    time.sleep(3)
+    robot.writeServoAngle(0)
+    robot.rgbOn(0, 0, 0)
+    robot.buzzerOff()
   #--- GENERATED BLOCK CODE -----
 
 except Exception as e:

@@ -55,15 +55,14 @@ class EduCre8BotClient:
         #---------------------------------
         self.FORWARD = 1
         self.BACKWARD = -1
-        self.FRONT = 0
         self.LEFT = 1
         self.RIGHT = -1
 
-        self.percent_gripper_open: int = 100
+        self.percent_grip: int = 50
         self.percent_drive_speed: int = 30
         self.percent_turn_speed: int = 10
         self.drive_vel: float = 0.15
-        self.turn_vel: float = 0.5
+        self.turn_vel: float = 0.7
 
         self.sonar_obstacle_range: int = 500 # mm
         self.tof_obstacle_range: int = 500 # mm
@@ -83,12 +82,12 @@ class EduCre8BotClient:
             success = self.clearControllerData()
 
             if success:
-                print("MoboBot Connected Successfully")
+                print("Robot Connected Successfully")
                 return
             sleep(0.1)
 
         self.disconnect()
-        raise RuntimeError("Could not connect to MoboBot, Try Again")
+        raise RuntimeError("Could not connect to Robot, Try Again")
 
 
     def disconnect(self):
@@ -351,12 +350,15 @@ class EduCre8BotClient:
     def readRobotTurn_deg(self) -> int:
         return int(self.readRobotTurn()*180/pi)
     
-    def setGripperOpenPercent(self, percent):
-        self.percent_gripper_open = percent
+    def setGripPercent(self, percent):
+        self.percent_grip = percent
+
+    def gripperActionGrip(self):
+        grip_dist_mm = self.map(self.percent_grip, 0, 100, 15, 55)
+        self.writeGripperDist(grip_dist_mm)
 
     def gripperActionOpen(self):
-        open_dist_mm = self.map(self.percent_gripper_open, 0, 100, 15, 55)
-        self.writeGripperDist(open_dist_mm)
+        self.writeGripperDist(55)
 
     def gripperActionClose(self):
         self.writeGripperDist(15)
@@ -369,12 +371,12 @@ class EduCre8BotClient:
 
     def setDriveVel(self):
         # max_drive_vel = self.max_motor_speed_val * self.wheel_radius_param_val
-        max_drive_vel = 10.0 * self.wheel_radius_param_val
+        max_drive_vel = 15.0 * self.wheel_radius_param_val
         self.drive_vel = round((max_drive_vel*self.percent_drive_speed)/100.0, 3)
 
     def setTurnVel(self):
         # max_drive_vel = self.max_motor_speed_val * self.wheel_radius_param_val
-        max_drive_vel = 10.0 * self.wheel_radius_param_val
+        max_drive_vel = 15.0 * self.wheel_radius_param_val
         max_turn_vel = (max_drive_vel*2) / self.wheel_dist_param_val
         self.turn_vel = round((max_turn_vel*self.percent_turn_speed)/100.0, 3)
 
