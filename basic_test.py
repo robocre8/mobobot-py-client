@@ -37,8 +37,6 @@ finally:
   print("[CLEANUP]: STOPPING AND EXITING PROGRAM SAFELY")
   try:
       robot.stop()
-      time.sleep(0.1)
-      exit()
   except:
-      exit()
+      pass
 
